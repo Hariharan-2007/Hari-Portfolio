@@ -2143,3 +2143,349 @@ h1, h2, h3, .nav-logo {
     width: 100%;
   }
 }
+/* ===== INTERACTIVE COLOR + TRANSITION UPGRADE ===== */
+:root {
+  --primary: #ff6b6b;
+  --primary-dark: #130f1f;
+  --accent-cool: #00c2ff;
+  --accent-warm: #ffb86b;
+  --chart-2: #6aa9ff;
+  --chart-3: #2fe6c2;
+  --hover-lift: translateY(-4px) scale(1.01);
+  --transition-smooth: 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+[data-theme="light"] {
+  --primary: #e94f64;
+  --primary-dark: #ffffff;
+  --accent-cool: #0077b6;
+  --accent-warm: #e38b2c;
+}
+
+body {
+  background:
+    radial-gradient(900px 420px at 5% -5%, color-mix(in srgb, var(--accent-cool) 18%, transparent), transparent 60%),
+    radial-gradient(860px 400px at 100% 0%, color-mix(in srgb, var(--primary) 18%, transparent), transparent 58%),
+    var(--bg);
+}
+
+.nav-links a,
+.nav-resume,
+.btn-primary,
+.btn-outline,
+.project-link,
+.contact-card,
+.theme-toggle,
+.project-card,
+.skill-card,
+.experience-content,
+.hero-socials a,
+.footer-socials a {
+  transition:
+    color var(--transition-smooth),
+    background var(--transition-smooth),
+    border-color var(--transition-smooth),
+    box-shadow var(--transition-smooth),
+    transform var(--transition-smooth);
+}
+
+.nav-links a:hover {
+  color: color-mix(in srgb, var(--primary) 72%, #ffffff 28%);
+}
+
+.nav-resume,
+.btn-primary {
+  background: linear-gradient(120deg, var(--primary), var(--accent-warm));
+  box-shadow: 0 14px 30px color-mix(in srgb, var(--primary) 30%, transparent);
+}
+
+.nav-resume:hover,
+.btn-primary:hover {
+  transform: var(--hover-lift);
+  box-shadow: 0 18px 36px color-mix(in srgb, var(--primary) 42%, transparent);
+}
+
+.btn-outline {
+  border-color: color-mix(in srgb, var(--accent-cool) 38%, var(--border));
+}
+
+.btn-outline:hover {
+  color: var(--accent-cool);
+  border-color: var(--accent-cool);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 24px color-mix(in srgb, var(--accent-cool) 24%, transparent);
+}
+
+.hero h1 span {
+  background: linear-gradient(90deg, var(--accent-cool), var(--primary), var(--accent-warm));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  background-size: 200% 100%;
+  animation: titleShift 5s linear infinite;
+}
+
+@keyframes titleShift {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 200% 50%; }
+}
+
+.skill-card::after,
+.project-card::after,
+.experience-content::after {
+  content: "";
+  position: absolute;
+  inset: -120% 30% auto -30%;
+  height: 220%;
+  transform: rotate(25deg);
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.14), transparent);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.skill-card:hover,
+.project-card:hover,
+.experience-content:hover {
+  transform: var(--hover-lift);
+  border-color: color-mix(in srgb, var(--accent-cool) 48%, var(--primary) 52%);
+}
+
+.skill-card:hover::after,
+.project-card:hover::after,
+.experience-content:hover::after {
+  opacity: 1;
+  animation: sheenSweep 900ms ease;
+}
+
+@keyframes sheenSweep {
+  0% { transform: translateX(-30%) rotate(25deg); }
+  100% { transform: translateX(36%) rotate(25deg); }
+}
+
+.skill-bar-fill {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(90deg, var(--accent-cool), var(--primary));
+}
+
+.skill-bar-fill::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -35%;
+  width: 35%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.38), transparent);
+  animation: barShimmer 2.2s linear infinite;
+}
+
+@keyframes barShimmer {
+  0% { left: -35%; }
+  100% { left: 120%; }
+}
+
+.project-link:hover,
+.contact-card:hover,
+.hero-socials a:hover {
+  transform: translateY(-3px) scale(1.02);
+  border-color: color-mix(in srgb, var(--primary) 56%, var(--accent-cool) 44%);
+  box-shadow: 0 14px 28px color-mix(in srgb, var(--accent-cool) 24%, transparent);
+}
+
+.section-title {
+  position: relative;
+}
+
+.section-title::after {
+  content: "";
+  display: block;
+  margin: 0.45rem auto 0;
+  width: 84px;
+  max-width: 40%;
+  height: 3px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--accent-cool), var(--primary), var(--accent-warm));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero h1 span,
+  .skill-bar-fill::after,
+  .skill-card:hover::after,
+  .project-card:hover::after,
+  .experience-content:hover::after {
+    animation: none !important;
+  }
+
+  .nav-links a,
+  .nav-resume,
+  .btn-primary,
+  .btn-outline,
+  .project-link,
+  .contact-card,
+  .theme-toggle,
+  .project-card,
+  .skill-card,
+  .experience-content,
+  .hero-socials a,
+  .footer-socials a {
+    transition: none !important;
+  }
+}
+
+/* ===== PROFILE IMAGE TONE REFINEMENT ===== */
+:root {
+  --profile-ring: #c4a247;
+  --profile-shadow-deep: rgba(93, 98, 97, 0.28);
+  --profile-shadow-soft: rgba(170, 176, 173, 0.34);
+}
+
+[data-theme="light"] {
+  --profile-shadow-deep: rgba(110, 116, 114, 0.24);
+  --profile-shadow-soft: rgba(184, 189, 186, 0.36);
+}
+
+.hero-profile {
+  border: 3px solid var(--profile-ring);
+  box-shadow:
+    0 14px 30px var(--profile-shadow-deep),
+    0 0 0 4px color-mix(in srgb, var(--profile-ring) 24%, transparent),
+    0 10px 30px var(--profile-shadow-soft);
+  animation: profileFloat 7.8s ease-in-out infinite;
+}
+
+.hero-profile:hover {
+  transform: translateY(-5px) scale(1.014);
+  box-shadow:
+    0 18px 36px var(--profile-shadow-deep),
+    0 0 0 5px color-mix(in srgb, var(--profile-ring) 28%, transparent),
+    0 14px 34px var(--profile-shadow-soft);
+}
+
+.hero-profile img {
+  filter: contrast(1.03) saturate(1.02);
+}
+
+/* ===== ATTRACTIVE TRANSITION EFFECTS (MOTION UPGRADE) ===== */
+:root {
+  --fx-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --fx-speed: 0.45s;
+}
+
+.animate-on-scroll {
+  filter: blur(4px);
+  transform: translateY(30px) scale(0.985);
+  transition:
+    opacity 0.7s var(--fx-ease),
+    transform 0.7s var(--fx-ease),
+    filter 0.7s var(--fx-ease);
+}
+
+.animate-on-scroll.visible {
+  filter: blur(0);
+  transform: translateY(0) scale(1);
+}
+
+.btn-primary,
+.btn-outline,
+.nav-resume,
+.project-link {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.btn-primary::before,
+.btn-outline::before,
+.nav-resume::before,
+.project-link::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(120deg, transparent 20%, rgba(255, 255, 255, 0.22) 50%, transparent 80%);
+  transform: translateX(-130%);
+  transition: transform 0.75s var(--fx-ease);
+}
+
+.btn-primary:hover::before,
+.btn-outline:hover::before,
+.nav-resume:hover::before,
+.project-link:hover::before {
+  transform: translateX(130%);
+}
+
+.hero-socials a,
+.footer-socials a,
+.theme-toggle {
+  transition: transform var(--fx-speed) var(--fx-ease), box-shadow var(--fx-speed) var(--fx-ease), border-color var(--fx-speed) var(--fx-ease);
+}
+
+.hero-socials a:hover,
+.footer-socials a:hover,
+.theme-toggle:hover {
+  transform: translateY(-4px) scale(1.08);
+  box-shadow: 0 10px 20px color-mix(in srgb, var(--accent-cool) 28%, transparent);
+}
+
+.skill-card,
+.project-card,
+.experience-content,
+.contact-card {
+  transform-origin: center;
+  transition:
+    transform var(--fx-speed) var(--fx-ease),
+    box-shadow var(--fx-speed) var(--fx-ease),
+    border-color var(--fx-speed) var(--fx-ease),
+    background-position 0.8s var(--fx-ease);
+  background-size: 140% 140%;
+  background-position: 50% 50%;
+}
+
+.skill-card:hover,
+.project-card:hover,
+.experience-content:hover,
+.contact-card:hover {
+  transform: translateY(-8px) scale(1.015);
+  background-position: 70% 30%;
+}
+
+.section-title {
+  transition: letter-spacing var(--fx-speed) var(--fx-ease), text-shadow var(--fx-speed) var(--fx-ease), transform var(--fx-speed) var(--fx-ease);
+}
+
+.section-title:hover {
+  letter-spacing: -0.01em;
+  transform: translateY(-2px);
+  text-shadow: 0 8px 24px color-mix(in srgb, var(--accent-cool) 22%, transparent);
+}
+
+.hero-profile {
+  transition: transform 0.7s var(--fx-ease), box-shadow 0.7s var(--fx-ease), filter 0.7s var(--fx-ease);
+}
+
+.hero-profile:hover {
+  filter: saturate(1.06);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-on-scroll,
+  .animate-on-scroll.visible,
+  .btn-primary::before,
+  .btn-outline::before,
+  .nav-resume::before,
+  .project-link::before,
+  .hero-socials a,
+  .footer-socials a,
+  .theme-toggle,
+  .skill-card,
+  .project-card,
+  .experience-content,
+  .contact-card,
+  .section-title,
+  .hero-profile {
+    transition: none !important;
+    animation: none !important;
+    transform: none !important;
+    filter: none !important;
+  }
+}
